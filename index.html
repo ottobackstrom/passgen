@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
     <title>Lösenordsgenerator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #passwordContainer {
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        #generatedPassword {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="passwordContainer">
+        <h1>Lösenordsgenerator</h1>
+        <p>Klicka på knappen för att generera ett slumpmässigt lösenord:</p>
+        <button onclick="generatePassword()">Generera lösenord</button>
+        <p>Genererat lösenord:</p>
+        <input type="text" id="generatedPassword" readonly>
+    </div>
+
     <script>
         function generatePassword() {
-            var length = document.getElementById("passwordLength").value;
-            var password = generateRandomPassword(length);
-            document.getElementById("generatedPassword").value = password;
-        }
-
-        function generateRandomPassword(length) {
+            var length = 12; // Längden på det slumpmässiga lösenordet
             var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var password = "";
             for (var i = 0; i < length; i++) {
                 var randomIndex = Math.floor(Math.random() * characters.length);
                 password += characters.charAt(randomIndex);
             }
-            return password;
+            document.getElementById("generatedPassword").value = password;
         }
     </script>
-</head>
-<body>
-    <h1>Lösenordsgenerator</h1>
-    <p>Ange längden på det lösenord du vill generera:</p>
-    <input type="number" id="passwordLength" value="12">
-    <button onclick="generatePassword()">Generera lösenord</button>
-    <p>Genererat lösenord:</p>
-    <input type="text" id="generatedPassword" readonly>
 </body>
 </html>
