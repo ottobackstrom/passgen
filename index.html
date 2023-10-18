@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
     <title>Lösenordsgenerator</title>
     <style>
         body {
@@ -41,6 +40,27 @@
             font-weight: bold;
             margin: 20px 0;
         }
+
+        /* Media Query för att justera stilar på mindre skärmar (mobil) */
+        @media screen and (max-width: 480px) {
+            #passwordContainer {
+                width: 100%;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 14px;
+            }
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            #generatedPassword {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -50,18 +70,33 @@
         <button onclick="generatePassword()">Generera lösenord</button>
         <p>Genererat lösenord:</p>
         <input type="text" id="generatedPassword" readonly>
+
+        <!-- Knapp för att aktivera fullskärmsläge -->
+        <button onclick="toggleFullScreen()">Aktivera Fullskärm</button>
     </div>
 
     <script>
+        // Funktion för att generera ett slumpmässigt lösenord
         function generatePassword() {
-            var length = 12; // Längden på det slumpmässiga lösenordet
-            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var length = 12;
+            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
             var password = "";
             for (var i = 0; i < length; i++) {
                 var randomIndex = Math.floor(Math.random() * characters.length);
                 password += characters.charAt(randomIndex);
             }
             document.getElementById("generatedPassword").value = password;
+        }
+
+        // Funktion för att aktivera eller avaktivera fullskärmsläge
+        function toggleFullScreen() {
+            if (document.documentElement.requestFullscreen) {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
         }
     </script>
 </body>
