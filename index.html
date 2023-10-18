@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lösenordsgenerator</title>
+    <script>
+        function generatePassword() {
+            var length = document.getElementById("passwordLength").value;
+            var password = generateRandomPassword(length);
+            document.getElementById("generatedPassword").value = password;
+        }
+
+        function generateRandomPassword(length) {
+            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
+            var password = "";
+            for (var i = 0; i < length; i++) {
+                var randomIndex = Math.floor(Math.random() * characters.length);
+                password += characters.charAt(randomIndex);
+            }
+            return password;
+        }
+    </script>
+</head>
+<body>
+    <h1>Lösenordsgenerator</h1>
+    <p>Ange längden på det lösenord du vill generera:</p>
+    <input type="number" id="passwordLength" value="12">
+    <button onclick="generatePassword()">Generera lösenord</button>
+    <p>Genererat lösenord:</p>
+    <input type="text" id="generatedPassword" readonly>
+</body>
+</html>
