@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
     <title>Lösenordsgenerator</title>
     <style>
         body {
@@ -70,13 +71,9 @@
         <button onclick="generatePassword()">Generera lösenord</button>
         <p>Genererat lösenord:</p>
         <input type="text" id="generatedPassword" readonly>
-
-        <!-- Knapp för att aktivera fullskärmsläge -->
-        <button onclick="toggleFullScreen()">Aktivera Fullskärm</button>
     </div>
 
     <script>
-        // Funktion för att generera ett slumpmässigt lösenord
         function generatePassword() {
             var length = 12;
             var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
@@ -86,17 +83,6 @@
                 password += characters.charAt(randomIndex);
             }
             document.getElementById("generatedPassword").value = password;
-        }
-
-        // Funktion för att aktivera eller avaktivera fullskärmsläge
-        function toggleFullScreen() {
-            if (document.documentElement.requestFullscreen) {
-                if (document.fullscreenElement) {
-                    document.exitFullscreen();
-                } else {
-                    document.documentElement.requestFullscreen();
-                }
-            }
         }
     </script>
 </body>
