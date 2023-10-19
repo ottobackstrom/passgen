@@ -2,88 +2,108 @@
 <html>
 <head>
   <meta charset="UTF-8">
-    <title>Lösenordsgenerator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #passwordContainer {
-            width: 100%;
-            max-width: 400px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            font-size: 24px;
-        }
-        p {
-            font-size: 16px;
-        }
-        button {
-            font-size: 16px;
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-        #generatedPassword {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
+  <title>Lösenordsgenerator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    #passwordContainer {
+      width: 100%;
+      max-width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+    #generatedPassword {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
 
-        /* Media Query för att justera stilar på mindre skärmar (mobil) */
-        @media screen and (max-width: 480px) {
-            #passwordContainer {
-                width: 100%;
-                padding: 10px;
-            }
-            h1 {
-                font-size: 20px;
-            }
-            p {
-                font-size: 14px;
-            }
-            button {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-            #generatedPassword {
-                font-size: 16px;
-            }
-        }
-    </style>
+    /* Media Query för att justera stilar på mindre skärmar (mobil) */
+    @media screen and (max-width: 480px) {
+      #passwordContainer {
+        width: 100%;
+        padding: 10px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 14px;
+      }
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+      #generatedPassword {
+        font-size: 16px;
+      }
+    }
+
+    /* Stilar för dropdown-meny */
+    select {
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Stilar för knapp */
+    button {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div id="passwordContainer">
-        <h1>Lösenordsgenerator</h1>
-        <p>Klicka på knappen för att generera ett slumpmässigt lösenord:</p>
-        <button onclick="generatePassword()">Generera lösenord</button>
-        <p>Genererat lösenord:</p>
-        <input type="text" id="generatedPassword" readonly>
-    </div>
+  <div id="passwordContainer">
+    <h1>Lösenordsgenerator</h1>
+    <p>Välj önskad längd för lösenorden:</p>
+    <select id="passwordLength">
+      <option value="8">8 tecken</option>
+      <option value="12">12 tecken</option>
+      <option value="16">16 tecken</option>
+      <option value="20">20 tecken</option>
+    </select>
+    <button onclick="generatePassword()">Generera lösenord</button>
+    <p>Genererat lösenord:</p>
+    <input type="text" id="generatedPassword" readonly>
+  </div>
 
-    <script>
-        function generatePassword() {
-            var length = 12;
-            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var password = "";
-            for (var i = 0; i < length; i++) {
-                var randomIndex = Math.floor(Math.random() * characters.length);
-                password += characters.charAt(randomIndex);
-            }
-            document.getElementById("generatedPassword").value = password;
-        }
-    </script>
+  <script>
+    function generatePassword() {
+      var length = document.getElementById("passwordLength").value;
+      var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      var password = "";
+      for (var i = 0; i < length; i++) {
+        var randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters.charAt(randomIndex);
+      }
+      document.getElementById("generatedPassword").value = password;
+    }
+  </script>
 </body>
 </html>
